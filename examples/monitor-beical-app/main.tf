@@ -1,21 +1,10 @@
-terraform-datadog-monitor
-=================
-
-Terraform module for Datadog Monitor.
-
-
-
-Usage
------
-
-```hcl
 locals {
   product_domain = "BEI"
   cluster        = "beical-app"
 }
 
 module "monitor_system_beical-app" {
-  source          = "github.com/traveloka/terraform-datadog-monitor.git?ref=0.1.0"
+  source         = "../../"
   product_domain = "${local.product_domain}"
   cluster        = "${local.cluster}"
 
@@ -31,20 +20,3 @@ module "monitor_system_beical-app" {
 
   recipients = ["slack-bei", "pagerduty-bei", "bei@traveloka.com"]
 }
-```
-
-Terraform Version
------------------
-
-This module was created using Terraform 0.11.7. 
-So to be more safe, Terraform version 0.11.7 or newer is required to use this module.
-
-Authors
--------
-
-* [Karsten Ari Agathon](https://github.com/karstenaa)
-
-License
--------
-
-Apache 2 Licensed. See LICENSE for full details.
