@@ -18,6 +18,12 @@ variable "query" {
   description = "The query for monitor"
 }
 
+variable "comparison" {
+  type        = "string"
+  default     = ""
+  description = "The comparison operator. By default it will determined by comparing critical and warning threshold"
+}
+
 variable "message" {
   type        = "string"
   default     = ""

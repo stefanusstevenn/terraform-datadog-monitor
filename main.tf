@@ -10,7 +10,7 @@ resource "datadog_monitor" "template" {
   message            = "${local.message}"
   escalation_message = "${var.escalation_message}"
 
-  query = "${var.query} ${var.thresholds["critical"] >= var.thresholds["warning"] ? ">" : "<"} ${var.thresholds["critical"]}"
+  query = "${var.query} ${var.comparison != "" ? var.comparison : var.thresholds["critical"] >= lookup(var.thresholds, "warning", -999) ? ">=" : "<="} ${var.thresholds["critical"]}"
 
   thresholds = "${var.thresholds}"
 
