@@ -3,9 +3,9 @@ variable "product_domain" {
   description = "The name of the product domain"
 }
 
-variable "cluster" {
+variable "service" {
   type        = "string"
-  description = "The name of the cluster"
+  description = "The name of the service"
 }
 
 variable "name" {

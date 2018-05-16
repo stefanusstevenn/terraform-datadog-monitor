@@ -17,5 +17,5 @@ resource "datadog_monitor" "template" {
   renotify_interval = "${var.renotify_interval}"
   notify_audit      = "${var.notify_audit}"
 
-  tags = ["product_domain:${var.product_domain}", "cluster:${var.cluster}"]
+  tags = ["product_domain:${var.product_domain}", "service:${var.service}"]
 }
