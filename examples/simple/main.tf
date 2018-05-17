@@ -4,7 +4,7 @@ locals {
   cluster        = "beical-app"
 }
 
-module "monitor_system_beical-app" {
+module "beical_app_system_cpu_idle" {
   source         = "../../"
   product_domain = "${local.product_domain}"
   service        = "${local.service}"
@@ -16,8 +16,6 @@ module "monitor_system_beical-app" {
     critical = 80
     warning  = 70
   }
-
-  message = "Monitor is triggered"
 
   recipients = ["slack-bei", "pagerduty-bei", "bei@traveloka.com"]
 }

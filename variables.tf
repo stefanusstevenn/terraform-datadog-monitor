@@ -32,7 +32,6 @@ variable "message" {
 
 variable "recipients" {
   type        = "list"
-  default     = []
   description = "Notification recipients when monitor triggered"
 }
 
