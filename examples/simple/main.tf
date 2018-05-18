@@ -4,7 +4,7 @@ locals {
   cluster        = "beical-app"
 }
 
-module "beical_app_system_cpu_idle" {
+module "beical_app_monitor_system_cpu_idle" {
   source         = "../../"
   product_domain = "${local.product_domain}"
   service        = "${local.service}"
