@@ -8,6 +8,11 @@ variable "service" {
   description = "The name of the service"
 }
 
+variable "environment" {
+  type        = "string"
+  description = "The name of the environment"
+}
+
 variable "name" {
   type        = "string"
   description = "The name for monitor"
@@ -16,12 +21,6 @@ variable "name" {
 variable "query" {
   type        = "string"
   description = "The query for monitor"
-}
-
-variable "comparison" {
-  type        = "string"
-  default     = ""
-  description = "The comparison operator. By default it will determined by comparing critical and warning threshold"
 }
 
 variable "message" {
@@ -56,6 +55,12 @@ variable "notify_audit" {
 variable "thresholds" {
   type        = "map"
   description = "The warning and critical thresholds for this monitoring"
+}
+
+variable "tags" {
+  type        = "list"
+  default     = []
+  description = "Additional tags for this monitor"
 }
 
 variable "enabled" {

@@ -1,3 +1,3 @@
-output "beical_app_monitor_system_cpu_idle_name" {
-  value = "${module.beical_app_monitor_system_cpu_idle.name}"
+output "system_monitor_cpu_usage_name" {
+  value = "${module.system_monitor_cpu_usage.name}"
 }
