@@ -1,7 +1,7 @@
 locals {
   product_domain = "BEI"
   service        = "beical"
-  environment    = "staging"
+  environment    = "production"
   cluster        = "beical-app"
 
   thresholds = {
@@ -19,14 +19,17 @@ module "system_monitor_cpu_usage" {
   name  = "${local.product_domain} - ${local.cluster} - ${local.environment} - CPU Usage is High on IP: {{ host.ip }} Name: {{ host.name }}"
   query = "avg(last_5m):100 - avg:system.cpu.idle{cluster:${local.cluster}, environment:${local.environment}} by {host} >= ${local.thresholds["critical"]}"
 
-  recipients        = ["slack-bei", "pagerduty-bei", "bei@traveloka.com"]
-  renotify_interval = 0
-  notify_audit      = false
+  recipients         = ["bei@traveloka.com"]
+  alert_recipients   = ["pagerduty-bei"]
+  warning_recipients = ["slack-bei-alert"]
+  renotify_interval  = 0
+  notify_audit       = false
 
   thresholds = "${local.thresholds}"
 
   message            = "Monitor is triggered"
   escalation_message = "Monitor isn't resolved for given interval"
 
-  tags = ["tag1:tag1", "tag2:tag2"]
+  tags         = ["tag1:tag1", "tag2:tag2"]
+  timeboard_id = "823233"
 }

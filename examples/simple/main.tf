@@ -1,7 +1,7 @@
 locals {
   product_domain = "BEI"
   service        = "beical"
-  environment    = "staging"
+  environment    = "production"
   cluster        = "beical-app"
 
   thresholds = {
