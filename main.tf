@@ -22,8 +22,9 @@ resource "datadog_monitor" "template" {
   name = "${var.name}"
   type = "metric alert"
 
-  query      = "${var.query}"
-  thresholds = "${var.thresholds}"
+  query            = "${var.query}"
+  thresholds       = "${var.thresholds}"
+  evaluation_delay = "${var.evaluation_delay}"
 
   message            = "${local.full_message}"
   escalation_message = "${var.escalation_message}"

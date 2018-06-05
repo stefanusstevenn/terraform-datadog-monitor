@@ -16,16 +16,16 @@ module "system_monitor_cpu_usage" {
   service        = "${local.service}"
   environment    = "${local.environment}"
 
-  name  = "${local.product_domain} - ${local.cluster} - ${local.environment} - CPU Usage is High on IP: {{ host.ip }} Name: {{ host.name }}"
-  query = "avg(last_5m):100 - avg:system.cpu.idle{cluster:${local.cluster}, environment:${local.environment}} by {host} >= ${local.thresholds["critical"]}"
+  name             = "${local.product_domain} - ${local.cluster} - ${local.environment} - CPU Usage is High on IP: {{ host.ip }} Name: {{ host.name }}"
+  query            = "avg(last_5m):100 - avg:system.cpu.idle{cluster:${local.cluster}, environment:${local.environment}} by {host} >= ${local.thresholds["critical"]}"
+  thresholds       = "${local.thresholds}"
+  evaluation_delay = "300"
 
   recipients         = ["bei@traveloka.com"]
   alert_recipients   = ["pagerduty-bei"]
   warning_recipients = ["slack-bei-alert"]
   renotify_interval  = 0
   notify_audit       = false
-
-  thresholds = "${local.thresholds}"
 
   message            = "Monitor is triggered"
   escalation_message = "Monitor isn't resolved for given interval"

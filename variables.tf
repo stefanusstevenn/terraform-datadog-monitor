@@ -34,6 +34,12 @@ variable "thresholds" {
   description = "The warning and critical thresholds for this monitoring"
 }
 
+variable "evaluation_delay" {
+  type        = "string"
+  default     = "0"
+  description = "Time to delay evaluation in seconds"
+}
+
 variable "tags" {
   type        = "list"
   default     = []
