@@ -17,18 +17,13 @@ EOF
 }
 
 resource "datadog_monitor" "template" {
-  count = "${length(var.monitor_names)}"
+  count = "${var.enabled}"
 
-  name = "${var.monitor_names[count.index]}"
+  name = "${var.name}"
   type = "metric alert"
 
-  query = "${var.monitor_queries[count.index]}"
-
-  thresholds = {
-    warning  = "${var.warning_thresholds[count.index]}"
-    critical = "${var.critical_thresholds[count.index]}"
-  }
-
+  query            = "${var.query}"
+  thresholds       = "${var.thresholds}"
   evaluation_delay = "${var.evaluation_delay}"
 
   message            = "${local.full_message}"

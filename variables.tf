@@ -1,3 +1,9 @@
+variable "enabled" {
+  type        = "string"
+  default     = true
+  description = "To enable this module"
+}
+
 variable "product_domain" {
   type        = "string"
   description = "The name of the product domain"
@@ -13,24 +19,19 @@ variable "environment" {
   description = "The name of the environment"
 }
 
-variable "monitor_names" {
-  type        = "list"
-  description = "List of monitor names"
+variable "name" {
+  type        = "string"
+  description = "The name for monitor"
 }
 
-variable "monitor_queries" {
-  type        = "list"
-  description = "List of monitor queries"
+variable "query" {
+  type        = "string"
+  description = "The query for monitor"
 }
 
-variable "critical_thresholds" {
-  type        = "list"
-  description = "List of critical thresholds for these monitorings"
-}
-
-variable "warning_thresholds" {
-  type        = "list"
-  description = "List of warning thresholds for these monitorings"
+variable "thresholds" {
+  type        = "map"
+  description = "The warning and critical thresholds for this monitoring"
 }
 
 variable "evaluation_delay" {
