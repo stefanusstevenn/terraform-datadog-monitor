@@ -93,3 +93,9 @@ variable "notify_audit" {
   default     = false
   description = "Whether any configuration changes should be notified"
 }
+
+variable "include_tags" {
+  type        = "string"
+  default     = true
+  description = "Whether to include tags in name"
+}

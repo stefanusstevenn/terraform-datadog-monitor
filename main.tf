@@ -31,6 +31,7 @@ resource "datadog_monitor" "template" {
 
   renotify_interval = "${var.renotify_interval}"
   notify_audit      = "${var.notify_audit}"
+  include_tags      = "${var.include_tags}"
 
   tags = "${concat(local.tags, var.tags)}"
 }

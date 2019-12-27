@@ -26,6 +26,7 @@ module "system_monitor_cpu_usage" {
   warning_recipients = ["slack-bei-alert"]
   renotify_interval  = 0
   notify_audit       = false
+  include_tags       = true
 
   message            = "Monitor is triggered"
   escalation_message = "Monitor isn't resolved for given interval"
