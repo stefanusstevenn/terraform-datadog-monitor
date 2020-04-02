@@ -105,3 +105,9 @@ variable "include_tags" {
   default     = true
   description = "Whether to include tags in name"
 }
+
+variable "require_full_window" {
+  type        = "string"
+  default     = true
+  description = "Whether require full window of data for evaluation"
+}

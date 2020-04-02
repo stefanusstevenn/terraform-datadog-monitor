@@ -34,5 +34,7 @@ resource "datadog_monitor" "template" {
   notify_audit      = "${var.notify_audit}"
   include_tags      = "${var.include_tags}"
 
+  require_full_window = "${var.require_full_window}"
+
   tags = "${concat(local.tags, var.tags)}"
 }
