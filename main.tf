@@ -37,4 +37,8 @@ resource "datadog_monitor" "template" {
   require_full_window = "${var.require_full_window}"
 
   tags = "${concat(local.tags, var.tags)}"
+
+  lifecycle {
+    ignore_changes = ["silenced"]
+  }
 }
