@@ -13,8 +13,8 @@ Usage
 Terraform Version
 -----------------
 
-This module was created using Terraform 0.11.7. 
-So to be more safe, Terraform version 0.11.7 or newer is required to use this module.
+This module was created using Terraform 0.12.31. 
+So to be more safe, Terraform version 0.12 or newer is required to use this module.
 
 Authors
 -------
