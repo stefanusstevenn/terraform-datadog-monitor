@@ -112,3 +112,8 @@ variable "require_full_window" {
   description = "Whether require full window of data for evaluation"
 }
 
+variable "notify_no_data" {
+  type        = bool
+  default     = false
+  description = "Notify if there is no data receive"
+}

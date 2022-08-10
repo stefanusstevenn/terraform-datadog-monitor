@@ -27,6 +27,7 @@ module "system_monitor_cpu_usage" {
   renotify_interval  = 0
   notify_audit       = false
   include_tags       = true
+  notify_no_data     = true
 
   message            = "Monitor is triggered"
   escalation_message = "Monitor isn't resolved for given interval"

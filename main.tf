@@ -34,7 +34,7 @@ resource "datadog_monitor" "template" {
     warning           = lookup(var.thresholds, "warning", null)
     warning_recovery  = lookup(var.thresholds, "warning_recovery", null)
   }
-  
+
   evaluation_delay = var.evaluation_delay
 
   message            = local.full_message
@@ -43,6 +43,7 @@ resource "datadog_monitor" "template" {
   renotify_interval = var.renotify_interval
   notify_audit      = var.notify_audit
   include_tags      = var.include_tags
+  notify_no_data    = var.notify_no_data
 
   require_full_window = var.require_full_window
 
