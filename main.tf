@@ -5,7 +5,7 @@ locals {
   warning_message          = length(var.warning_recipients) > 0 ? "{{#is_warning}} @${join(" @", var.warning_recipients)}{{/is_warning}}" : ""
   warning_recovery_message = length(var.warning_recipients) > 0 ? "{{#is_warning_recovery}} @${join(" @", var.warning_recipients)}{{/is_warning_recovery}}" : ""
 
-  full_message = <<EOF
+  full_message_metric_alert = <<EOF
 ${var.message}
 ${var.dashboard_id != "" ? "Dashboard: https://app.datadoghq.com/dashboard/${var.dashboard_id}" : ""}
 ${var.dashboard_id == "" && var.timeboard_id != "" ? "Timeboard: https://app.datadoghq.com/dash/${var.timeboard_id}" : ""}
@@ -13,6 +13,21 @@ Related timeboards: https://app.datadoghq.com/dashboard/lists?q=${join("+-+", [v
 Related monitors: https://app.datadoghq.com/monitors/manage?q=tag%3A%28%22${join("%22%20AND%20%22", local.tags)}%22%29
 Notification recipients:${local.recipients_message}${local.alert_message}${local.alert_recovery_message}${local.warning_message}${local.warning_recovery_message}
 EOF
+
+  full_message_error_tracking = <<EOF
+{{ log.attributes.[error.message] }}
+
+Logger : {{ log.attributes.[logger.name] }}
+
+[View in Error Tracking](https://app.datadoghq.com/logs/error-tracking?issueId={{[issue.id].name}})
+
+${local.alert_message}
+EOF
+
+  full_message = {
+    "metric alert"         = local.full_message_metric_alert,
+    "error-tracking alert" = local.full_message_error_tracking
+  }
 
 
   tags = ["productdomain:${var.product_domain}", "service:${var.service}", "environment:${var.environment}"]
@@ -22,7 +37,7 @@ resource "datadog_monitor" "template" {
   count = var.enabled ? 1 : 0
 
   name = var.name
-  type = "metric alert"
+  type = var.type
 
   query = var.query
 
@@ -37,7 +52,7 @@ resource "datadog_monitor" "template" {
 
   evaluation_delay = var.evaluation_delay
 
-  message            = local.full_message
+  message            = local.full_message[var.type]
   escalation_message = var.escalation_message
 
   renotify_interval = var.renotify_interval

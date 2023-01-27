@@ -24,6 +24,12 @@ variable "name" {
   description = "The name for monitor"
 }
 
+variable "type" {
+  type        = string
+  description = "The type of monitor"
+  default     = "metric alert"
+}
+
 variable "query" {
   type        = string
   description = "The query for monitor"
